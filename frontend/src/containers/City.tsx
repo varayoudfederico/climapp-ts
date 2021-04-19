@@ -14,8 +14,6 @@ interface CityProps {
 const City = ({ weather, forecast }: CityProps) => {
 	const { cambiarCiudad } = useContext(Context);
 
-	
-
 	return (
 		<div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 			<Button

@@ -2,7 +2,7 @@
 
 Aplicacion para consulta de clima y pronóstico desarrollada en React / Express.js
 
-#### Live Demo: https://climappv1.netlify.app
+#### Live Demo: https://climappts.netlify.app
 
 ## Backend
 
