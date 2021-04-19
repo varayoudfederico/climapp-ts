@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import CityItem from "../components/CityItem";
 import Context from "../utils/Context";
 import { Button, Modal, Input } from "antd";

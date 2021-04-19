@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Statistic } from "antd";
 import Context from "../utils/Context";
 import WeatherIcon from "./WeatherIcon";
