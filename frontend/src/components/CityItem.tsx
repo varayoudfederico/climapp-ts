@@ -1,7 +1,14 @@
 import { Button, Popconfirm } from "antd";
 import { DeleteOutlined, GlobalOutlined } from "@ant-design/icons";
+import { Ciudad } from "../types/types";
 
-const CityItem = ({ ciudad, elegirCiudad, eliminarCiudad }) => {
+interface CityItemProps {
+	ciudad: Ciudad;
+	elegirCiudad: (ciudad: Ciudad) => void;
+	eliminarCiudad: () => void;
+}
+
+const CityItem = ({ ciudad, elegirCiudad, eliminarCiudad }: CityItemProps) => {
 	return (
 		<div className="city-item-card" onClick={() => elegirCiudad(ciudad)}>
 			<div>
@@ -19,11 +26,11 @@ const CityItem = ({ ciudad, elegirCiudad, eliminarCiudad }) => {
 			<Popconfirm
 				title="Seguro desea eliminar?"
 				onConfirm={(e) => {
-					e.stopPropagation();
+					// e.stopPropagation();
 					eliminarCiudad();
 				}}
 				onCancel={(e) => {
-					e.stopPropagation();
+					// e.stopPropagation();
 				}}
 				okText="Si"
 				cancelText="No"

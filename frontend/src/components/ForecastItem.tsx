@@ -1,8 +1,13 @@
 import WeatherIcon from "./WeatherIcon";
 import { getFechaString, getTemperaturaString } from "../utils/Utils";
+import { Dia } from "../types/types";
 
-const ForecastItem = ({ dia }) => {
-	const { dt, min, max, description, icon } = dia;
+interface ForecastItemProps {
+	dia: Dia;
+}
+
+const ForecastItem = ({ dia }: ForecastItemProps) => {
+	const { icon, dt, description, max, min } = dia;
 	return (
 		<div>
 			<div

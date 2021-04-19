@@ -5,35 +5,35 @@ import City from "./City";
 import CityList from "./CityList";
 import { fetchWeatherByCity, fetchForecastByCity } from "../api/api";
 import { message } from "antd";
+import { Ciudad, emptyCity } from "../types/types";
 import "../styles/css/app.css";
 import "../styles/css/weather-icons.css";
 
 const App = () => {
-	const [weather, setWeather] = useState(null);
-	const [forecast, setForecast] = useState(null);
-	const [ciudadActual, setCiudadActual] = useState(null);
+	const [weather, setWeather] = useState(undefined);
+	const [forecast, setForecast] = useState(undefined);
+	const [ciudadActual, setCiudadActual] = useState<Ciudad>(emptyCity);
 	const [isLoading, setIsLoading] = useState(false);
 
 	let history = useHistory();
 
-	//al detectar un cambio de ciudad llama a la funcion para obtener los datos del clima
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const weatherResponse = await fetchWeatherByCity(ciudadActual);
-				const forecastResponse = await fetchForecastByCity(ciudadActual);
+				const weatherResponse = await fetchWeatherByCity(ciudadActual!);
+				const forecastResponse = await fetchForecastByCity(ciudadActual!);
 
 				setWeather(weatherResponse.data.data);
 				setForecast(forecastResponse.data.data);
 				setIsLoading(false);
 			} catch (e) {
-				setCiudadActual(null);
+				setCiudadActual(emptyCity);
 				message.error("No se pudieron obtener datos del clima");
 				setIsLoading(false);
 			}
 		};
 
-		if (ciudadActual) {
+		if (ciudadActual.name) {
 			setIsLoading(true);
 			fetchData();
 		}
@@ -59,10 +59,10 @@ const App = () => {
 		}
 	}, [ciudadActual, weather, forecast, history]);
 
-	const cambiarCiudad = (ciudad) => {
+	const cambiarCiudad = (ciudad: Ciudad) => {
 		if (!isLoading) {
-			setWeather(null);
-			setForecast(null);
+			setWeather(undefined);
+			setForecast(undefined);
 			setCiudadActual(ciudad);
 		}
 	};

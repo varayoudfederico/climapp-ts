@@ -4,14 +4,22 @@ import CityDetalles from "../components/CityDetalles";
 import CityForecast from "../components/CityForecast";
 import { Button } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import { Weather, Dia, emptyCity } from "../types/types";
 
-const City = ({ weather, forecast }) => {
+interface CityProps {
+	weather?: Weather;
+	forecast?: Dia[];
+}
+
+const City = ({ weather, forecast }: CityProps) => {
 	const { cambiarCiudad } = useContext(Context);
+
+	
 
 	return (
 		<div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
 			<Button
-				onClick={() => cambiarCiudad()}
+				onClick={() => cambiarCiudad(emptyCity)}
 				shape="circle"
 				icon={<ArrowLeftOutlined />}
 			></Button>

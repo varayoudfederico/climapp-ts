@@ -1,4 +1,10 @@
-const WeatherIcon = ({ iconText, size, color }) => {
+interface WeatherIconProps {
+	iconText: string;
+	size: string;
+	color: string;
+}
+
+const WeatherIcon = ({ iconText, size, color }: WeatherIconProps) => {
 	const renderIcon = () => {
 		switch (iconText) {
 			case "01n":

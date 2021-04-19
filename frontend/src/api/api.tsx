@@ -1,21 +1,14 @@
 import axios from "axios";
-
+import { Ciudad } from "../types/types";
 // const hostUrl = "http://localhost:5000/v1";
 const hostUrl = "https://climappv1.herokuapp.com/v1";
-
-type Ciudad = {
-	lat: string;
-	lon: string;
-	nombre: string;
-	country: string;
-};
 
 export const fetchLocation = () => {
 	const url = hostUrl + `/location`;
 	return axios.get(url);
 };
 
-export const fetchCity = (ciudad: Ciudad) => {
+export const fetchCity = (ciudad: string) => {
 	const url = hostUrl + `/ciudad/${ciudad}`;
 	return axios.get(url);
 };

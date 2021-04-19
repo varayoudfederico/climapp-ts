@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import { AppContext, emptyCity } from "../types/types";
 
-const Context = createContext({
-	ciudadActual: undefined,
-	cambiarCiudad: undefined,
+const Context = createContext<AppContext>({
+	ciudadActual: emptyCity,
+	cambiarCiudad: () => {},
 });
 
 export default Context;

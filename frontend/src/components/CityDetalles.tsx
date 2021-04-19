@@ -10,7 +10,13 @@ import {
 	getHoraString,
 } from "../utils/Utils";
 
-const CityDetalles = ({ weather }) => {
+import { Weather } from "../types/types";
+
+interface WeatherProps {
+	weather: Weather;
+}
+
+const CityDetalles = ({ weather }: WeatherProps) => {
 	const { ciudadActual } = useContext(Context);
 	const { name, country } = ciudadActual;
 	const {

@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { fetchLocation } from "../api/api";
 import Context from "../utils/Context";
 import { message } from "antd";
 import { EnvironmentOutlined, LoadingOutlined } from "@ant-design/icons";
+import { Ciudad, emptyCity } from "../types/types";
 
 const CityCurrent = () => {
-	const [currentCity, setCurrentCity] = useState(null);
+	const [currentCity, setCurrentCity] = useState<Ciudad>(emptyCity);
 	const { cambiarCiudad } = useContext(Context);
 
 	useEffect(() => {
@@ -15,7 +16,7 @@ const CityCurrent = () => {
 	const obtenerLocation = async () => {
 		try {
 			const response = await fetchLocation();
-			const ciudad = {
+			const ciudad: Ciudad = {
 				name: response.data.data.city,
 				country: response.data.data.countryCode,
 				lat: response.data.data.lat,
@@ -28,7 +29,7 @@ const CityCurrent = () => {
 	};
 
 	const renderCurrentCity = () => {
-		if (currentCity) {
+		if (currentCity.name) {
 			return (
 				<div>
 					<span className="city-item-icon">
@@ -56,7 +57,10 @@ const CityCurrent = () => {
 	};
 
 	return (
-		<div className="city-current-card" onClick={() => cambiarCiudad(currentCity)}>
+		<div
+			className="city-current-card"
+			onClick={() => cambiarCiudad(currentCity)}
+		>
 			<div>{renderCurrentCity()}</div>
 		</div>
 	);

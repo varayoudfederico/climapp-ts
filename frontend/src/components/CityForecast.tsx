@@ -1,7 +1,11 @@
-import React from "react";
 import ForecastItem from "./ForecastItem";
+import { Dia } from "../types/types";
 
-const CityForecast = ({ forecast }) => {
+interface CityForecastProps {
+	forecast: Dia[];
+}
+
+const CityForecast = ({ forecast }: CityForecastProps) => {
 	const renderListaCiudades = () =>
 		forecast.map((dia, i) => {
 			return (

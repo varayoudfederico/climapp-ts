@@ -5,22 +5,30 @@ import { Button, Modal, Input } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import CityCurrent from "../components/CityCurrent";
 import { fetchCity } from "../api/api";
+import { Ciudad } from "../types/types";
 
 const CityList = () => {
-	const [listaCiudades, setListaCiudades] = useState(
-		JSON.parse(localStorage.getItem("listaCiudades")) || []
-	);
+	const [listaCiudades, setListaCiudades] = useState<Ciudad[]>([]);
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [currentInput, setCurrentInput] = useState("");
 
 	const { cambiarCiudad } = useContext(Context);
 
 	useEffect(() => {
+		const savedLista = localStorage.getItem("listaCiudades");
+		if (savedLista) {
+			setListaCiudades(JSON.parse(savedLista));
+		}
+	}, []);
+
+	useEffect(() => {
 		localStorage.setItem("listaCiudades", JSON.stringify(listaCiudades));
 	}, [listaCiudades]);
 
-	const eliminarCiudad = (index) => {
-		setListaCiudades(listaCiudades.filter((_, i) => i !== index));
+	const eliminarCiudad = (index: number) => {
+		setListaCiudades(
+			listaCiudades.filter((_: Ciudad, i: number) => i !== index)
+		);
 	};
 
 	const agregarCiudad = async () => {
@@ -37,7 +45,7 @@ const CityList = () => {
 	};
 
 	const renderListaCiudades = () =>
-		listaCiudades.map((ciudad, i) => {
+		listaCiudades.map((ciudad: Ciudad, i: number) => {
 			return (
 				<div key={i}>
 					<CityItem
