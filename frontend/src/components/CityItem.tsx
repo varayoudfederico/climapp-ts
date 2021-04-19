@@ -26,11 +26,15 @@ const CityItem = ({ ciudad, elegirCiudad, eliminarCiudad }: CityItemProps) => {
 			<Popconfirm
 				title="Seguro desea eliminar?"
 				onConfirm={(e) => {
-					// e.stopPropagation();
-					eliminarCiudad();
+					if (e) {
+						e.stopPropagation();
+						eliminarCiudad();
+					}
 				}}
 				onCancel={(e) => {
-					// e.stopPropagation();
+					if (e) {
+						e.stopPropagation();
+					}
 				}}
 				okText="Si"
 				cancelText="No"

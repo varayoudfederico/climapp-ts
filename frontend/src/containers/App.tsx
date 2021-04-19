@@ -10,8 +10,8 @@ import "../styles/css/app.css";
 import "../styles/css/weather-icons.css";
 
 const App = () => {
-	const [weather, setWeather] = useState(undefined);
-	const [forecast, setForecast] = useState(undefined);
+	const [weather, setWeather] = useState();
+	const [forecast, setForecast] = useState();
 	const [ciudadActual, setCiudadActual] = useState<Ciudad>(emptyCity);
 	const [isLoading, setIsLoading] = useState(false);
 
